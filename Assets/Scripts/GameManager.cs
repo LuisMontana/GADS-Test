@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
             _currentPickups = 0;
             _timeRemaining = _levelData[_currentLevel].secondsToLose;
             _zoomCamera.SetNewZoomSize(_levelData[_currentLevel].cameraSize);
+            _levelObjects[_currentLevel -1].SetActive(true);
         }
     }
 
@@ -59,14 +60,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if(_timeRemaining < 0) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            ResetScene();
         }
         _timeRemaining -= Time.deltaTime;
         _cumulativeTime += Time.deltaTime;
     }
 
+    public void ResetScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private void OnGUI()
     {
-        GUILayout.Label($"<color='black'><size=40>{_timeRemaining} Seconds Left</size></color>");
+        GUILayout.Label($"<color='black'><size=40>{(int)_timeRemaining} Seconds Left </size></color>");
     }
 }
