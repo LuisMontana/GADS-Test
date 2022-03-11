@@ -5,11 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    [SerializeField] private int[] _pickupsToAdvance; // Amount of pickups needed to proceed to next "level"
+    [SerializeField] private LevelData[] _levelData;
     [SerializeField] private GameObject[] _levelObjects; // Objects that will be enabled as game advances
-    [SerializeField] private float [] _timeToLose; // Objects that will be enabled as game advances
     [SerializeField] private GameObject _treasurePrefab;
+    [SerializeField] private CameraZoom _zoomCamera;
     private int _currentLevel;
     private float _timeRemaining;
     private float _cumulativeTime;
@@ -27,23 +26,27 @@ public class GameManager : MonoBehaviour
 
        _currentLevel = 0; 
        _cumulativeTime = 0f;
-       _timeRemaining = _timeToLose[_currentLevel];
+       _timeRemaining = _levelData[_currentLevel].secondsToLose;
        _currentPickups = 0;
        InvokeRepeating("SpawnTreasures", 0f, 3f);
     }
 
     public void AddPickup() {
         _currentPickups++;
-        if(_currentPickups == _pickupsToAdvance[_currentLevel]){
+        if(_currentPickups == _levelData[_currentLevel].pickupsToAdvance){
             _currentLevel++;
-            _timeRemaining = _timeToLose[_currentLevel];
+            _currentPickups = 0;
+            _timeRemaining = _levelData[_currentLevel].secondsToLose;
+            _zoomCamera.SetNewZoomSize(_levelData[_currentLevel].cameraSize);
         }
     }
 
     public void SpawnTreasures() {
         bool spawned = false;
         while(!spawned) {
-            Vector2 spawnPoint = new Vector2(Random.Range(-6, 6), Random.Range(-4.5f, 4.5f));
+            float boundX = _levelData[_currentLevel].spawnBoundaries.x;
+            float boundY = _levelData[_currentLevel].spawnBoundaries.y;
+            Vector2 spawnPoint = new Vector2(Random.Range(boundX * -1, boundX), Random.Range(boundY * -1, boundY));
             Collider2D collidingObject = Physics2D.OverlapCircle(spawnPoint, 1.5f);
             if(collidingObject == false) {
                 Instantiate(_treasurePrefab, spawnPoint, Quaternion.identity);
@@ -64,6 +67,6 @@ public class GameManager : MonoBehaviour
 
     private void OnGUI()
     {
-        GUILayout.Label($"<color='black'><size=40>{_timeRemaining} Seconds Left {_cumulativeTime} Total Seconds</size></color>");
+        GUILayout.Label($"<color='black'><size=40>{_timeRemaining} Seconds Left</size></color>");
     }
 }

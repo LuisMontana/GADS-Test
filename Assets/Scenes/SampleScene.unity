@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -149,6 +150,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d89c127690c8ea34d85b9182b21e941b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zoomSpeed: 0.0025
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -176,7 +190,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -486,20 +500,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0f469da3d7d934a8b205f19949e8b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pickupsToAdvance: 0200000000000000000000000000000000000000
+  _levelData:
+  - {fileID: 11400000, guid: e4d9f41e136f55346aea1118fc7b3c88, type: 2}
+  - {fileID: 11400000, guid: 31e96965e6ea33343aa89643cc38f0bc, type: 2}
   _levelObjects:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _timeToLose:
-  - 10
-  - 20
-  - 0
-  - 0
-  - 0
   _treasurePrefab: {fileID: 3301272519598209265, guid: c4fa075efe2595f479fc9896ae21211a, type: 3}
+  _zoomCamera: {fileID: 519420030}
 --- !u!4 &2079121870
 Transform:
   m_ObjectHideFlags: 0
