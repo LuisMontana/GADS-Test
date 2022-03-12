@@ -5,10 +5,12 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     private Vector3 _target;
-    private const float BULLET_SPEED = 4f;
-
+    private float TIME_TO_LIVE = 4f;
+    private const float BULLET_SPEED = 8f;
+    
     public void SetTarget(Vector3 target) {
         _target = (target - transform.position).normalized;
+        Invoke("Despawn", TIME_TO_LIVE);
     }
 
     private void Update() {
@@ -18,7 +20,11 @@ public class BulletController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")) {
             other.GetComponent<PlayerController>().ReduceLife();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
+    }
+
+    private void Despawn() {
+        gameObject.SetActive(false);
     }
 }

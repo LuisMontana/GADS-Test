@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0b7bd1b3dd381f4c9f168b67f299d3a, type: 3}
-  m_Name: Level3
+  m_Name: Level4
   m_EditorClassIdentifier: 
-  pickupsToAdvance: 4
-  secondsToLose: 35
+  pickupsToAdvance: 10
+  secondsToLose: 120
   cameraSize: 9
   spawnBoundaries: {x: 15.5, y: 8.5}

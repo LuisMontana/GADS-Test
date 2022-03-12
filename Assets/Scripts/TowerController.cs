@@ -15,7 +15,11 @@ public class TowerController : MonoBehaviour
     }
 
     void SpawnBullet() {
-        GameObject bullet = Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
+        GameObject bullet = GameManager.instance.poolDictionary["bullets"].Dequeue();
+        bullet.transform.position = transform.position;
+        bullet.SetActive(true);
         bullet.GetComponent<BulletController>().SetTarget(_playerTransform.position);
+
+        GameManager.instance.poolDictionary["bullets"].Enqueue(bullet);
     }
 }
