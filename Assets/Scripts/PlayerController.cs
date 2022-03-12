@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate() {
         Vector2 input = _movementAction.ReadValue<Vector2>();
         _rb2D.velocity = new Vector2(input.x * _speed + _extraForceX, input.y * _speed + _extraForceY);
+
+        if( !_isFacingRight && input.x < 0f || _isFacingRight && input.x > 0f) {
+            Flip();
+        }
     }
 
     public void ReduceLife() {
@@ -45,6 +49,11 @@ public class PlayerController : MonoBehaviour
     public void SetExtraForces(float x, float y) {
         _extraForceX = x;
         _extraForceY = y;
+    }
+
+    private void Flip() {
+        _isFacingRight = !_isFacingRight;
+        transform.Rotate(0, 180f, 0);
     }
 }
 
