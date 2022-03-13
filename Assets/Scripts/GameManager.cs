@@ -33,7 +33,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private RectTransform _healthObjects;
     [SerializeField] private Sprite _emptyHeart;
     [SerializeField] private Text _secondsLeftText;
-    [SerializeField] private GameObject _winText;
+    [SerializeField] private GameObject _winTextContainer;
+    [SerializeField] private Text _winText;
     void Awake()
     {
         if(instance != null && instance != this) {
@@ -123,6 +124,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void EnableWinText() {
-        _winText.SetActive(true);
+        _winTextContainer.SetActive(true);
+        _winText.text = $"CONGRATULATIONS YOU WON!\n\nYou earned all treasures in {_cumulativeTime} seconds";
     }
 }

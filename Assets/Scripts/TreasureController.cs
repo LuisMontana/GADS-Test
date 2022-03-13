@@ -9,7 +9,7 @@ public class TreasureController : MonoBehaviour
     private bool _playerInTrigger = false;
     [SerializeField] private Slider _slider;
     private const float TRIGGER_DISABLE_TIME = 1f;
-    private const float INACTIVE_DISABLE_TIME = 4f;
+    private const float INACTIVE_DISABLE_TIME = 5f;
 
     public void Initialize() {
         _slider.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, 1f, 0f));

@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private int _currentLives;
     private float _extraForceX;
     private float _extraForceY;
-    private const int MAX_LIVES = 3;
+    private const int MAX_LIVES = 4;
 
     private void Awake() {
         _platformerInputs = new PlayerInput();
