@@ -6030,6 +6030,7 @@ MonoBehaviour:
   - {fileID: 1234665896}
   _treasurePrefab: {fileID: 3301272519598209265, guid: c4fa075efe2595f479fc9896ae21211a, type: 3}
   _zoomCamera: {fileID: 519420030}
+  _player: {fileID: 993539720}
   pools:
   - tag: bullets
     prefab: {fileID: 5120418882911003019, guid: 2157e6fa9fff4d94ab46c96026cc7f03, type: 3}

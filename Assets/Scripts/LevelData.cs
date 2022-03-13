@@ -7,4 +7,6 @@ public class LevelData : ScriptableObject
     public float secondsToLose;
     public float cameraSize;
     public Vector2 spawnBoundaries;
+    public float pickupMinDistance;
+    public float pickupMaxDistance;
 }

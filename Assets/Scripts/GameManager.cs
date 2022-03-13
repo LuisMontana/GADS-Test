@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] _levelObjects; // Objects that will be enabled as game advances
     [SerializeField] private GameObject _treasurePrefab;
     [SerializeField] private CameraZoom _zoomCamera;
+    [SerializeField] private Transform _player;
     private int _currentLevel;
     private float _timeRemaining;
     private float _cumulativeTime;
@@ -86,10 +87,14 @@ public class GameManager : MonoBehaviour
             float boundX = _levelData[_currentLevel].spawnBoundaries.x;
             float boundY = _levelData[_currentLevel].spawnBoundaries.y;
             Vector2 spawnPoint = new Vector2(Random.Range(boundX * -1, boundX), Random.Range(boundY * -1, boundY));
-            Collider2D collidingObject = Physics2D.OverlapCircle(spawnPoint, 1.5f);
-            if(collidingObject == false) {
-                Instantiate(_treasurePrefab, spawnPoint, Quaternion.identity);
-                spawned = true;
+            float distance = Vector2.Distance(spawnPoint, _player.position);
+            // only overlap if distance is right one
+            if(distance >= _levelData[_currentLevel].pickupMinDistance && distance <= _levelData[_currentLevel].pickupMaxDistance ){
+                Collider2D collidingObject = Physics2D.OverlapCircle(spawnPoint, 1.5f);
+                if(collidingObject == false) {
+                    Instantiate(_treasurePrefab, spawnPoint, Quaternion.identity);
+                    spawned = true;
+                }
             }
         }
     }

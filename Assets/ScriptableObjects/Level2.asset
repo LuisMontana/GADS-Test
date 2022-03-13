@@ -16,3 +16,6 @@ MonoBehaviour:
   secondsToLose: 20
   cameraSize: 5
   spawnBoundaries: {x: 6, y: 4.45}
+  pickupMinDistance: 3
+  pickupMaxDistance: 7
+  pickupTimeToLive: 4

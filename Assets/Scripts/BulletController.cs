@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     private Vector3 _target;
-    private float TIME_TO_LIVE = 4f;
+    private float TIME_TO_LIVE = 5f;
     private const float BULLET_SPEED = 5f;
     
     public void SetTarget(Vector3 target) {

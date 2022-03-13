@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b7bd1b3dd381f4c9f168b67f299d3a, type: 3}
   m_Name: Level4
   m_EditorClassIdentifier: 
-  pickupsToAdvance: 10
-  secondsToLose: 120
+  pickupsToAdvance: 9
+  secondsToLose: 100
   cameraSize: 9
   spawnBoundaries: {x: 15.5, y: 8.5}
+  pickupMinDistance: 4
+  pickupMaxDistance: 10
+  pickupTimeToLive: 6
