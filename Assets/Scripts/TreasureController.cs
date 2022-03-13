@@ -12,9 +12,9 @@ public class TreasureController : MonoBehaviour
     private const float INACTIVE_DISABLE_TIME = 5f;
 
     public void Initialize() {
-        _slider.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, 1f, 0f));
         _timeToPickup = TRIGGER_DISABLE_TIME;
         Invoke("OnTimeOutDisable", INACTIVE_DISABLE_TIME);
+        GetComponent<AudioSource>().Play();
     }
     
     private void Update() {
@@ -30,6 +30,7 @@ public class TreasureController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Player")) {
+            _slider.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, 1f, 0f));
             _playerInTrigger = true;
             _slider.gameObject.SetActive(true);
         }

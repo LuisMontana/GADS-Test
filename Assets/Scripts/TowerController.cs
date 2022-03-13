@@ -15,6 +15,7 @@ public class TowerController : MonoBehaviour
     }
 
     void SpawnBullet() {
+        GetComponent<AudioSource>().Play();
         GameObject bullet = GameManager.instance.poolDictionary["bullets"].Dequeue();
         bullet.transform.position = transform.position;
         bullet.SetActive(true);
