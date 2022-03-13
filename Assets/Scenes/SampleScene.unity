@@ -6035,6 +6035,9 @@ MonoBehaviour:
   - tag: bullets
     prefab: {fileID: 5120418882911003019, guid: 2157e6fa9fff4d94ab46c96026cc7f03, type: 3}
     size: 40
+  - tag: treasures
+    prefab: {fileID: 3301272519598209265, guid: c4fa075efe2595f479fc9896ae21211a, type: 3}
+    size: 20
   _healthObjects: {fileID: 1194834494}
   _emptyHeart: {fileID: 4432793351920879750, guid: b8abe5637207bf141af272c3a001638e, type: 3}
   _secondsLeftText: {fileID: 1968938775}

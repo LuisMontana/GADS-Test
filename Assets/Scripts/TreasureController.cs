@@ -11,7 +11,7 @@ public class TreasureController : MonoBehaviour
     private const float TRIGGER_DISABLE_TIME = 1f;
     private const float INACTIVE_DISABLE_TIME = 4f;
 
-    private void Awake() {
+    public void Initialize() {
         _slider.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0f, 1f, 0f));
         _timeToPickup = TRIGGER_DISABLE_TIME;
         Invoke("OnTimeOutDisable", INACTIVE_DISABLE_TIME);

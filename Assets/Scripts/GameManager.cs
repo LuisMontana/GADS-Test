@@ -92,7 +92,11 @@ public class GameManager : MonoBehaviour
             if(distance >= _levelData[_currentLevel].pickupMinDistance && distance <= _levelData[_currentLevel].pickupMaxDistance ){
                 Collider2D collidingObject = Physics2D.OverlapCircle(spawnPoint, 1.5f);
                 if(collidingObject == false) {
-                    Instantiate(_treasurePrefab, spawnPoint, Quaternion.identity);
+                    GameObject treasure = poolDictionary["treasures"].Dequeue();
+                    treasure.transform.position = spawnPoint;
+                    treasure.SetActive(true);
+                    treasure.GetComponent<TreasureController>().Initialize();
+                    GameManager.instance.poolDictionary["treasures"].Enqueue(treasure);
                     spawned = true;
                 }
             }
