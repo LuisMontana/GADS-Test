@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     public void ReduceLife() {
         _currentLives--;
-        Debug.Log(_currentLives);
+        GameManager.instance.UpdateHealthUI(_currentLives);
         if(_currentLives < 1) {
             GameManager.instance.ResetScene();
         }

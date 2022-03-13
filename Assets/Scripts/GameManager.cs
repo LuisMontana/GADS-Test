@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class Pool 
-    {
-        public string tag;
-        public GameObject prefab;
-        public int size;
-    }
-
     [SerializeField] private LevelData[] _levelData;
     [SerializeField] private GameObject[] _levelObjects; // Objects that will be enabled as game advances
     [SerializeField] private GameObject _treasurePrefab;
@@ -22,10 +15,24 @@ public class GameManager : MonoBehaviour
     private float _cumulativeTime;
     private int _currentPickups;
 
+    // Game Pool variables
+    [System.Serializable]
+    public class Pool 
+    {
+        public string tag;
+        public GameObject prefab;
+        public int size;
+    }
+
     public static GameManager instance;
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
-    
+
+    // UI Variables
+    [SerializeField] private RectTransform _healthObjects;
+    [SerializeField] private Sprite _emptyHeart;
+    [SerializeField] private Text _secondsLeftText;
+    [SerializeField] private GameObject _winText;
     void Awake()
     {
         if(instance != null && instance != this) {
@@ -61,6 +68,11 @@ public class GameManager : MonoBehaviour
         _currentPickups++;
         if(_currentPickups == _levelData[_currentLevel].pickupsToAdvance){
             _currentLevel++;
+            if(_currentLevel == 4) {
+                EnableWinText();
+                Time.timeScale = 0;
+                return;
+            }
             _currentPickups = 0;
             _timeRemaining = _levelData[_currentLevel].secondsToLose;
             _zoomCamera.SetNewZoomSize(_levelData[_currentLevel].cameraSize);
@@ -85,6 +97,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _secondsLeftText.text = $"{(int)_timeRemaining} SECONDS LEFT";
         if(_timeRemaining < 0) {
             ResetScene();
         }
@@ -96,8 +109,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void OnGUI()
-    {
-        GUILayout.Label($"<color='black'><size=40>{(int)_timeRemaining} Seconds Left </size></color>");
+    public void UpdateHealthUI (int healthRemaining) {
+        _healthObjects.GetChild(healthRemaining).GetComponent<Image>().sprite = _emptyHeart;
+    }
+
+    public void EnableWinText() {
+        _winText.SetActive(true);
     }
 }

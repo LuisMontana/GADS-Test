@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupsToAdvance: 4
   secondsToLose: 35
-  cameraSize: 9
-  spawnBoundaries: {x: 15.5, y: 8.5}
+  cameraSize: 7
+  spawnBoundaries: {x: 11, y: 6.3}
